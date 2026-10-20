@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechQuiz | Test Your Knowledge</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="navbar">
+            <a class="brand" href="#" aria-label="TechQuiz home">
+                <span class="brand-icon">T<span>Q</span></span>
+                <span>TechQuiz<span class="brand-dot">.</span></span>
+            </a>
+            <div class="nav-right">
+                <span class="live-dot"></span>
+                <span>Interactive Learning</span>
+            </div>
+        </header>
+
+        <main>
+            <!-- LOGIN SCREEN -->
+            <section id="loginScreen" class="screen login-layout">
+                <div class="hero-content">
+                    <div class="eyebrow"><span>✦</span> THE FUTURE IS YOURS TO EXPLORE</div>
+                    <h1>Think smart.<br>Code <span class="gradient-text">ahead.</span></h1>
+                    <p class="hero-description">
+                        Challenge your tech knowledge, sharpen your skills,
+                        and discover how much you really know.
+                    </p>
+
+                    <div class="hero-stats">
+                        <div><strong>10</strong><span>Questions</span></div>
+                        <div><strong>10 min</strong><span>Time limit</span></div>
+                        <div><strong>100%</strong><span>Your potential</span></div>
+                    </div>
+
+                    <div class="hero-decoration">
+                        <div class="orbit orbit-one"></div>
+                        <div class="orbit orbit-two"></div>
+                        <div class="hero-center">TQ<span>_</span></div>
+                        <span class="float-tag tag-one">&lt;/&gt; CODE</span>
+                        <span class="float-tag tag-two">0101</span>
+                        <span class="float-tag tag-three">AI × TECH</span>
+                    </div>
+                </div>
+
+                <div class="login-card">
+                    <div class="card-top-icon">✦</div>
+                    <span class="section-label">WELCOME ABOARD</span>
+                    <h2>Let's get started.</h2>
+                    <p class="muted">Enter your details to enter the quiz arena.</p>
+
+                    <form id="loginForm">
+                        <label for="userName">Full name</label>
+                        <input id="userName" type="text" placeholder="e.g. Arathi Nair"
+                               maxlength="60" autocomplete="name" required>
+
+                        <label for="userEmail">Email address</label>
+                        <input id="userEmail" type="email" placeholder="you@example.com"
+                               maxlength="100" autocomplete="email" required>
+
+                        <div class="login-note">
+                            <span>🔒</span>
+                            <span>Your details are used only for this quiz session.</span>
+                        </div>
+
+                        <button class="primary-btn" type="submit">
+                            Enter the Quiz <span>→</span>
+                        </button>
+                    </form>
+                    <p class="terms">10 questions · 4 options each · One correct answer</p>
+                </div>
+            </section>
+
+            <!-- QUIZ SCREEN -->
+            <section id="quizScreen" class="screen hidden">
+                <div class="quiz-heading">
+                    <div>
+                        <span class="section-label">KNOWLEDGE ARENA</span>
+                        <h1>You've got this, <span id="greetingName">Explorer</span>.</h1>
+                        <p class="muted">Choose the best answer for each question.</p>
+                    </div>
+                    <div class="timer-box">
+                        <span class="timer-icon">◷</span>
+                        <div><small>TIME REMAINING</small><strong id="timer">10:00</strong></div>
+                    </div>
+                </div>
+
+                <div class="progress-card">
+                    <div class="progress-info">
+                        <span id="questionCounter">QUESTION 01 OF 10</span>
+                        <span id="answeredCounter">0 of 10 answered</span>
+                    </div>
+                    <div class="progress-track">
+                        <div id="progressBar" class="progress-fill"></div>
+                    </div>
+                </div>
+
+                <div class="quiz-layout">
+                    <div class="question-card">
+                        <div class="question-meta">
+                            <span id="categoryTag" class="category-tag">COMPUTER BASICS</span>
+                            <span id="questionPoints" class="points-tag">10 POINTS</span>
+                        </div>
+
+                        <h2 id="questionText">Loading question...</h2>
+                        <p class="option-hint">SELECT ONE ANSWER</p>
+                        <div id="optionsContainer" class="options-container"></div>
+
+                        <div class="quiz-footer">
+                            <button id="prevBtn" class="secondary-btn" type="button">← Previous</button>
+                            <span id="selectionHint">Select an answer to continue</span>
+                            <button id="nextBtn" class="primary-btn next-btn" type="button">
+                                Next Question →
+                            </button>
+                        </div>
+                    </div>
+
+                    <aside class="question-sidebar">
+                        <div class="sidebar-card">
+                            <h3>Question navigator</h3>
+                            <p class="muted small-text">Jump to any question.</p>
+                            <div id="questionGrid" class="question-grid"></div>
+                            <div class="legend">
+                                <span><i class="legend-dot answered-dot"></i> Answered</span>
+                                <span><i class="legend-dot current-dot"></i> Current</span>
+                            </div>
+                        </div>
+
+                        <div class="tip-card">
+                            <span class="tip-icon">✦</span>
+                            <h3>Quick tip</h3>
+                            <p>Read every option carefully. You can revisit questions before submitting.</p>
+                        </div>
+                    </aside>
+                </div>
+
+                <div class="submit-bar">
+                    <div><strong>Ready to finish?</strong><span id="remainingText">You have 10 unanswered questions.</span></div>
+                    <button id="submitBtn" class="submit-btn" type="button">Submit Quiz ↗</button>
+                </div>
+            </section>
+
+            <!-- RESULTS SCREEN -->
+            <section id="resultScreen" class="screen hidden">
+                <div class="result-heading">
+                    <div class="result-symbol">✦</div>
+                    <span class="section-label">QUIZ COMPLETED</span>
+                    <h1 id="resultTitle">Brilliant effort!</h1>
+                    <p id="resultSubtitle" class="muted">Here's how you performed.</p>
+                </div>
+
+                <div class="result-score-card">
+                    <div class="score-ring" id="scoreRing">
+                        <div><strong id="scorePercentage">0%</strong><span>YOUR SCORE</span></div>
+                    </div>
+                    <div class="score-details">
+                        <span class="section-label">YOUR PERFORMANCE</span>
+                        <h2><span id="scoreValue">0</span> <span class="out-of">/ 100</span></h2>
+                        <p id="scoreMessage">Every attempt is a step forward.</p>
+                        <div class="result-user">Completed by <strong id="resultUser">Explorer</strong></div>
+                    </div>
+                </div>
+
+                <div class="result-stats">
+                    <div class="result-stat correct-stat">
+                        <span class="stat-symbol">✓</span>
+                        <span class="stat-label">CORRECT ANSWERS</span>
+                        <strong id="correctCount">0</strong>
+                    </div>
+                    <div class="result-stat incorrect-stat">
+                        <span class="stat-symbol">✕</span>
+                        <span class="stat-label">INCORRECT ANSWERS</span>
+                        <strong id="incorrectCount">0</strong>
+                    </div>
+                    <div class="result-stat unanswered-stat">
+                        <span class="stat-symbol">—</span>
+                        <span class="stat-label">UNANSWERED</span>
+                        <strong id="unansweredCount">0</strong>
+                    </div>
+                </div>
+
+                <div class="review-header">
+                    <div>
+                        <span class="section-label">LEARN & IMPROVE</span>
+                        <h2>Answer review</h2>
+                    </div>
+                    <button id="restartBtn" class="primary-btn" type="button">↻ Try Again</button>
+                </div>
+                <div id="reviewContainer" class="review-container"></div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <span>© 2026 TechQuiz</span>
+            <span>Built to make learning interactive <span class="footer-star">✦</span></span>
+        </footer>
+    </div>
+
+    <div id="confirmModal" class="modal hidden" role="dialog"
+         aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-card">
+            <div class="modal-icon">?</div>
+            <h2 id="modalTitle">Submit your quiz?</h2>
+            <p id="modalMessage">Your answers will be evaluated.</p>
+            <div class="modal-actions">
+                <button id="cancelSubmit" class="secondary-btn" type="button">Keep Playing</button>
+                <button id="confirmSubmit" class="primary-btn" type="button">Yes, Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
